@@ -18,6 +18,12 @@ help: ## This help.
 
 
 # FLASK TASKS
-# Run the container
 run_dev: ## Run the api for development 
 	flask run
+
+# DOCKER TASKS
+docker_build: ## Build the API image
+	docker build -t $(APP_NAME) .
+
+docker_run: docker_build ## Run a API container
+	docker run -i -t --rm --env-file=./config.env -v ${PWD}:/usr/src/api -p=$(FLASK_RUN_PORT):$(FLASK_RUN_PORT) --name="$(APP_NAME)" $(APP_NAME)
