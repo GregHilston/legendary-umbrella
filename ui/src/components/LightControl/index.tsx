@@ -5,10 +5,20 @@ import './light-control.scss';
 
 
 function LightControl() {
+  // TODO: initialize to current values
   const [color, setColor] = useState('');
+  const [lightState, setLightState] = useState(0);
 
   const handleColorChangeComplete = (c : any) => {
     setColor(c.hex);
+  };
+
+  const handleLightOff = () => {
+    setLightState(0);
+  };
+
+  const handleLightOn = () => {
+    setLightState(1);
   };
 
   return (
@@ -17,11 +27,11 @@ function LightControl() {
 
       {/* on - off */}
       <div className="btn-group btn-group-toggle" data-toggle="buttons">
-        <label className="btn btn-secondary active">
-          <input type="radio" id="light-on" checked/> On
+        <label className={(lightState ? 'active ' : '') + 'btn btn-secondary'}>
+          <input type="radio" onClick={handleLightOn}/> On
         </label>
-        <label className="btn btn-secondary">
-          <input type="radio" name="options"/> Off
+        <label className={(lightState ? '' : 'active ') + 'btn btn-secondary'}>
+          <input type="radio" onClick={handleLightOff}/> Off
         </label>
       </div>
 
