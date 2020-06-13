@@ -3,9 +3,8 @@ cnf ?= config.env
 include $(cnf)
 export $(shell sed 's/=.*//' $(cnf))
 
-# grep the version from the mix file
-VERSION=$(shell ./version.sh)
-
+# find the version from the latest tag in Git, defaulting to 0.0,0,0
+VERSION=$(shell git describe --tags 2> /dev/null || echo '0.0.0')
 
 # HELP
 # This will output the help for each task
