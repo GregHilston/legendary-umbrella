@@ -33,7 +33,7 @@ const LightControl = ({ lightID, color, on}: LightControlProps) => {
 
   return (
     <div className="light-control">
-      <div className="light-name">Light {lightID}</div>
+      <div className="light-name" style={{color: '#E0FF4F'}}>Light {lightID}</div>
 
       {/* on - off */}
       <div className="btn-group btn-group-toggle" data-toggle="buttons">
