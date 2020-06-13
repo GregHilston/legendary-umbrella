@@ -5,7 +5,8 @@ import Fun from '../Fun'
 
 function App() {
   return (
-    <div className="App">
+    <div className='App'>
+      <h1 className='meme-spacing center'>LEGENDARY UMBRELLA</h1>
       <Fun/>
     </div>
   );

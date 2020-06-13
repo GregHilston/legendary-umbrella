@@ -2,6 +2,7 @@ import React from 'react';
 import img1 from './1.png';
 import img2 from './2.png';
 import img3 from './3.png';
+import './fun.scss';
 
 function Fun() {
     const imgs = [img1, img2, img3];
@@ -9,7 +10,7 @@ function Fun() {
 
   return (
     <div>
-        <img src={imgs[idx]} alt='fun stuff'/>
+      <img className='img-thumbnail fun-img center' src={imgs[idx]} alt='fun stuff'/>
     </div>
   );
 }
