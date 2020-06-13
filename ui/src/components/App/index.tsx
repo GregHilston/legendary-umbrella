@@ -9,7 +9,13 @@ function App() {
     <div className='App'>
       <h1 className='meme-spacing center'>LEGENDARY UMBRELLA</h1>
       <Fun/>
-      <LightControl/>
+      { /* TODO: get state from api */ }
+      { /* TODO: populate light controls from each light returned from api */ }
+      <LightControl
+        lightID='123'
+        on={true}
+        color='#0'
+      />
     </div>
   );
 }

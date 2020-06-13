@@ -1,43 +1,53 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { ChromePicker } from 'react-color';
 
 import './light-control.scss';
 
+interface LightControlProps {
+  lightID: string
+  color: string
+  on: boolean
+}
 
-function LightControl() {
-  // TODO: initialize to current values
-  const [color, setColor] = useState('');
-  const [lightState, setLightState] = useState(0);
+const LightControl = ({ lightID, color, on}: LightControlProps) => {
+  const [curColor, setColor] = useState(color);
+  const [lightOn, setLightOn] = useState(on);
 
   const handleColorChangeComplete = (c : any) => {
     setColor(c.hex);
   };
 
   const handleLightOff = () => {
-    setLightState(0);
+    setLightOn(false);
   };
 
   const handleLightOn = () => {
-    setLightState(1);
+    setLightOn(true);
   };
+
+  useEffect(() => {
+    console.log(curColor, lightOn)
+    // TODO: make api call
+  }, [curColor, lightOn])
+
 
   return (
     <div className="light-control">
-      <div className="light-name">Light 1</div>
+      <div className="light-name">Light {lightID}</div>
 
       {/* on - off */}
       <div className="btn-group btn-group-toggle" data-toggle="buttons">
-        <label className={(lightState ? 'active ' : '') + 'btn btn-secondary'}>
+        <label className={(lightOn ? 'active ' : '') + 'btn btn-secondary'}>
           <input type="radio" onClick={handleLightOn}/> On
         </label>
-        <label className={(lightState ? '' : 'active ') + 'btn btn-secondary'}>
+        <label className={(lightOn ? '' : 'active ') + 'btn btn-secondary'}>
           <input type="radio" onClick={handleLightOff}/> Off
         </label>
       </div>
 
       {/* color */}
       <ChromePicker
-        color={color}
+        color={curColor}
         onChangeComplete={handleColorChangeComplete}
         disableAlpha={true}
       />
